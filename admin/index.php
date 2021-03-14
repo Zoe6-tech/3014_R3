@@ -39,7 +39,7 @@ confirm_logged_in();//only login in user can see the index.php page
                 <a href="admin_createuser.php">Create New User</a>
                 <?php endif;?>
 
-                <a href="admin_edituser.php">Edit My Account</a>
+                <a href="admin_edituser.php">Edit Account</a>
                 <a href="admin_logout.php">Sign Out</a>
             </div>
 

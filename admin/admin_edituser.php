@@ -5,7 +5,14 @@ require_once '../load.php';
 confirm_logged_in();
 
 $id = $_SESSION['user_id'];//define in login.php
-$current_user = getSingleUser($id);//function in user.php
+
+if($_SESSION['user_level'] == 2){
+    $current_user = getAllUser($id);
+}else{
+    $current_user = getSingleUser($id);
+}
+
+
 
 if(empty($current_user)){//is user doesnt exist
     $message = 'failed to get user info';
@@ -45,6 +52,7 @@ if(isset($_POST['submit'])){
                 <?php if(!empty($current_user)):?>
                     <form action="admin_edituser.php" method="post">
                         <?php while($user_info = $current_user -> fetch(PDO::FETCH_ASSOC)):?><!--user_info: table columns name-->
+                            <br>
                             <div class="edituser_label_input">
                             <label for="user_name">User Name:</label>
                             <input type="text" name="username"  id="user_name"  value="<?php echo $user_info['user_name']; ?>">
@@ -81,8 +89,10 @@ if(isset($_POST['submit'])){
                                 </select>
                             <?php endif;?>
                             </div>
-                            
-                            <div class="edit_user_buttons">
+                            <br><br>
+                        <?php endwhile;?>
+                        
+                        <div class="edit_user_buttons">
                             <button  class="subimt-createuser" type="submit" name="submit">SUBMIT</button>
                             <?php if($user_info['login_times'] == 1):?>
                             <a href="admin_logout.php">Sign Out</a>
@@ -93,7 +103,6 @@ if(isset($_POST['submit'])){
                             <?php endif;?>
                             </div>
 
-                        <?php endwhile;?>
                     </form>
                 <?php endif;?>
         </div>

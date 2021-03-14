@@ -67,8 +67,6 @@ function getSingleUser($user_id){
     // echo 'you are try to fetch user :'.$user_id;
     $pdo = Database::getInstance() -> getConnection();
 
-    
-
     $get_user_query = 'SELECT * FROM tbl_users WHERE user_id = :id';//SQL placeholder to aviod SQL injection
     $get_user_set = $pdo ->prepare($get_user_query);
     $get_user_result = $get_user_set -> execute(
@@ -84,7 +82,25 @@ function getSingleUser($user_id){
     }
 }
 
+//get all users 
+function getAllUser($user_id){
+   
+    $pdo = Database::getInstance() -> getConnection();
 
+    $get_all_user_query = ' SELECT * FROM tbl_users ';//SQL placeholder to aviod SQL injection
+    $get_all_user_set = $pdo ->prepare($get_all_user_query);
+    $get_all_user_result = $get_all_user_set -> execute(
+        array(
+            ':id' => $user_id
+        )
+        );
+
+    if($get_all_user_result && $get_all_user_set ->rowCount()){
+        return $get_all_user_set;
+    }else{
+        return false;
+    }
+}
 
 
 function editUser($user_data){
