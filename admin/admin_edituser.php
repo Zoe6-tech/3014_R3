@@ -88,17 +88,16 @@ if(isset($_POST['submit'])){
                             <br><br>
                         <?php endwhile;?>
                         
-                        <div class="edit_user_buttons">
+                            <div class="edit_user_buttons">
+                        
                             <button  class="subimt-createuser" type="submit" name="submit">SUBMIT</button>
-                            <?php if($user_info['login_times'] = 1):?>
-                            <a href="admin_logout.php">Sign Out</a>
-                            <?php endif;?>
-
-                            <?php if($user_info['login_times'] != 1):?>
+                            <br>
+                            
+                            <?php if($_SESSION['login_times'] > 1):?>
                             <a href="index.php">BACK</a>
                             <?php endif;?>
                             </div>
-
+                        
                     </form>
                 <?php endif;?>
         </div>
