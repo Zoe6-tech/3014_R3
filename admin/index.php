@@ -20,15 +20,13 @@ confirm_logged_in();//only login in user can see the index.php page
                 <h2>Hello, <?php echo $_SESSION['user_name'];?>! </h2>
                 <h3>You are : <?php echo getCurrentUserLevel();?></h3>
 
-                <?php if($_SESSION['login_times'] == 1):?>
-                <h4>Welcome to your first login!</h4>
-                <?php endif;?>
+                
 
-                <?php if($_SESSION['login_times'] != 1):?>
+                
                 <h4>IP address:  <?php echo $_SESSION['user_ip']?></h4>
                 <h4>Last Login Time: <?php echo $_SESSION['last_login']; ?></h4>
                 <h4>Number of Successful Login: <?php echo $_SESSION['login_times'];?></h4>
-                <?php endif;?>
+                
 
                 
                 

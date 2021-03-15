@@ -140,6 +140,7 @@ function editUser($user_data){
 
 
         if($_SESSION['login_times'] == 1){
+            return "Your change has been updated, please sign out first to make change works";
             redirect_to('admin_edituser.php');
         }
         
