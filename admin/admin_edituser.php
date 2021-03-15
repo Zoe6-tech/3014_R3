@@ -90,7 +90,7 @@ if(isset($_POST['submit'])){
                         
                         <div class="edit_user_buttons">
                             <button  class="subimt-createuser" type="submit" name="submit">SUBMIT</button>
-                            <?php if($user_info['login_times'] == 1):?>
+                            <?php if($user_info['login_times'] = 1):?>
                             <a href="admin_logout.php">Sign Out</a>
                             <?php endif;?>
 
