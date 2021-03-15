@@ -98,6 +98,7 @@ function confirm_logged_in(){
 }
 
 
+
 //if user log out, redirect user to admin_login.php
 function logout(){
     session_destroy();
