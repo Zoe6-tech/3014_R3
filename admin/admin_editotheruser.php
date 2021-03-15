@@ -3,15 +3,17 @@ require_once '../load.php';
 
 //make sure this page only access to 
 confirm_logged_in();
+//only admin have acesss to this page
+admin_access_only();
 
 $id = $_SESSION['user_id'];//define in login.php
-    $current_user = getSingleUser($id);
+
+$get_single_user= getAllUser($id);
 
 
 
-
-if(empty($current_user)){//is user doesnt exist
-    $message = 'failed to get user info';
+if(empty($search_user_name)){//is user doesnt exist
+    $message = 'Username doesnt exist';
 }
 
 // when user click submit
@@ -43,11 +45,14 @@ if(isset($_POST['submit'])){
 <body>
     <section class="edit_user_area">
         <h2>Edit User</h2>
+        <?php if(empty($get_single_user)):?>
+
+        <?php endif ?>
         <div class="edit_user_form">
             <?php echo !empty($message)?$message:'';?>
-                <?php if(!empty($current_user)):?>
+                <?php if(!empty($get_single_user)):?>
                     <form action="admin_edituser.php" method="post">
-                        <?php while($user_info = $current_user -> fetch(PDO::FETCH_ASSOC)):?><!--user_info: table columns name-->
+                        <?php while($user_info = $get_single_user -> fetch(PDO::FETCH_ASSOC)):?><!--user_info: table columns name-->
                             <br>
                             <div class="edituser_label_input">
                             <label for="user_name">User Name:</label>
@@ -90,13 +95,7 @@ if(isset($_POST['submit'])){
                         
                         <div class="edit_user_buttons">
                             <button  class="subimt-createuser" type="submit" name="submit">SUBMIT</button>
-                            <?php if($user_info['login_times'] == 1):?>
-                            <a href="admin_logout.php">Sign Out</a>
-                            <?php endif;?>
-
-                            <?php if($user_info['login_times'] != 1):?>
                             <a href="index.php">BACK</a>
-                            <?php endif;?>
                             </div>
 
                     </form>

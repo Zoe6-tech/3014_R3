@@ -38,8 +38,13 @@ confirm_logged_in();//only login in user can see the index.php page
                 <?php if(!empty($_SESSION['user_level'])):?>
                 <a href="admin_createuser.php">Create New User</a>
                 <?php endif;?>
-
-                <a href="admin_edituser.php">Edit Account</a>
+                 <br>
+                <a href="admin_edituser.php">Edit My Account</a>
+                <br>
+                <?php if($_SESSION['user_level'] ==2):?>
+                <a href="admin_editotheruser.php">Edit Others Account</a>
+                <?php endif;?>
+                <br>
                 <a href="admin_logout.php">Sign Out</a>
             </div>
 

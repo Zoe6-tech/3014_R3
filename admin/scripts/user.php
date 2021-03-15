@@ -82,16 +82,18 @@ function getSingleUser($user_id){
     }
 }
 
+
+
 //get all users 
 function getAllUser($user_id){
    
     $pdo = Database::getInstance() -> getConnection();
 
-    $get_all_user_query = ' SELECT * FROM tbl_users ';//SQL placeholder to aviod SQL injection
+    $get_all_user_query = ' SELECT * FROM tbl_users where user_id != :user_id';//SQL placeholder to aviod SQL injection
     $get_all_user_set = $pdo ->prepare($get_all_user_query);
     $get_all_user_result = $get_all_user_set -> execute(
         array(
-            ':id' => $user_id
+            ':user_id' => $user_id
         )
         );
 
@@ -101,6 +103,7 @@ function getAllUser($user_id){
         return false;
     }
 }
+
 
 
 function editUser($user_data){
