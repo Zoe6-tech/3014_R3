@@ -1,7 +1,7 @@
 <?php
 require_once '../load.php';
 confirm_logged_in();//only login in user can see the index.php page
-
+new_login_user_prevent();
 
 ?>
 
