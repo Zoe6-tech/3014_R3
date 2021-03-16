@@ -15,3 +15,8 @@ function admin_access_only(){
     }
 }
 
+function new_login_user_prevent(){
+    if($_SESSION['login_times'] <=1){
+          redirect_to('admin_edituser.php');
+    }
+}
