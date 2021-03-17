@@ -50,8 +50,8 @@ if(isset($_POST['submit'])){
 
                 <?php if(!empty($users)):?>
                         <?php while($user_info = $users -> fetch(PDO::FETCH_ASSOC)):?><!--user_info: table columns name-->
-                            <br>
                         <form action="admin_editotheruser.php" method="post">
+                        <h3>Edit <?php echo $user_info['user_name']; ?></h3>
                             <input type="hidden" name="userid" value="<?php echo $user_info['user_id']; ?>">
                             <div class="edituser_label_input">
                             <label for="user_name">User Name:</label>
@@ -89,18 +89,19 @@ if(isset($_POST['submit'])){
                                 </select>
                             <?php endif;?>
                             </div>
-                            <br><br>
+                            <br>
 
                             
                             <div class="edit_user_buttons">
                                 <button  class="subimt-createuser" type="submit" name="submit">SUBMIT</button>
-                                <a href="index.php">BACK</a>
+                                
                             </div>
                             
                         </form>
                         
                         <?php endwhile;?>
-
+                        <a href="index.php">BACK</a>
+                        <br>   <br>
                 <?php endif;?>
         </div>
     </section>
