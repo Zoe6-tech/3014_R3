@@ -108,10 +108,16 @@ function getAllUser($user_id){
 
 function editUser($user_data){
 
-    if(empty($user_data['username'])||isUsernameExists($user_data['username'])){
-        return "Username is invalid!";
-    }
 
+     $existing_user = getSingleUser($user_data['id'])->fetch();
+    
+	# only check that the username is taken if it actually changed
+    if ($existing_user['user_name'] != $user_data['username']) {
+    		if(empty($user_data['username']) || isUsernameExists($user_data['username'])){
+        	return 'Username is invalid!!';
+            }
+	}
+    
     $pdo = Database::getInstance() -> getConnection();
 
     $update_user_query = 'UPDATE tbl_users SET user_fname = :fname, user_lname = :lname, user_name = :username, user_password = :password, user_email = :email, user_level = :user_level WHERE user_id = :id';

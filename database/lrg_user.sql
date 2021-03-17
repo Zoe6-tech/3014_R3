@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 25, 2021 at 07:41 AM
+-- Generation Time: Mar 16, 2021 at 07:10 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -39,20 +39,18 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `user_ip` varchar(50) DEFAULT NULL,
   `user_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `last_login` timestamp NULL DEFAULT NULL,
-  `login_times` int(11) DEFAULT NULL,
+  `login_times` int(11) DEFAULT '0',
+  `user_status` varchar(20) NOT NULL DEFAULT 'unlocked',
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`user_id`, `user_level`, `user_name`, `user_fname`, `user_lname`, `user_password`, `user_email`, `user_ip`, `user_date`, `last_login`, `login_times`) VALUES
-(1, '2', 'admin', 'Zhu', 'Meng', 'admin123', 'z_meng@fanshaweonline.ca', '127.0.0.1', '2021-02-12 19:57:36', '2021-02-25 07:05:46', 38),
-(2, '1', 'leader', 'Evan', 'Chan', 'leader123', 'test@test.com', '127.0.0.1', '2021-02-12 20:57:29', '2021-02-24 18:20:46', 4),
-(4, '0', 'Zoe', 'Zoe', 'Meng', '112233', 'mengzhu0204@gmail.com', '127.0.0.1', '2021-02-24 18:21:44', '2021-02-24 18:22:14', 2),
-(15, '0', 'Motion', 'Ryoko', 'Oka', 'Goptg5bN', 'z_meng@fanshaweonline.ca', NULL, '2021-02-25 06:49:39', NULL, NULL),
-(3, '0', 'admin123', 'Evan', 'Chan', 'TZ8VoHPC', 'z_meng@fanshaweonline.ca', NULL, '2021-02-25 00:15:49', NULL, NULL);
+INSERT INTO `tbl_users` (`user_id`, `user_level`, `user_name`, `user_fname`, `user_lname`, `user_password`, `user_email`, `user_ip`, `user_date`, `last_login`, `login_times`, `user_status`) VALUES
+(1, '2', 'admin', 'Zoe', 'Zoe', 'admin123', 'test@test.com', '127.0.0.1', '2021-02-12 19:57:36', '2021-03-14 09:37:58', 65, 'unlocked'),
+(2, '2', 'pan', 'pan', 'pan', 'pan123', 'test.test@com', '127.0.0.1', '2021-03-12 08:36:18', '2021-03-16 04:08:03', 48, 'unlocked');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
