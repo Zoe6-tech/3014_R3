@@ -31,14 +31,18 @@ function login($username, $password, $ip) {
        
         //Newly created user, not logged in two minutes, user locked
         if ( $found_user['login_times'] == 0) {
+            date_default_timezone_set('America/New_York');
 
             //simply compare two integer timestamp values...
-             $diff = strtotime($found_user['user_date']) - time();
+             $diff = time() - strtotime($found_user['user_date']);
             //$diff = strtotime($found_user['user_date']) - strtotime('now');
+           
+            // {    echo $diff.PHP_EOL;
+            //     echo strtotime($found_user['user_date']).PHP_EOL;
+            //     echo time().PHP_EOL;
+            //     exit;
 
-             $limit_time = 2*60;
-
-            if ( $diff  >=  $limit_time ) {
+            if ( $diff  > 120 ) {
                   // it been more than 2 minutes
                 if ($found_user['user_status'] != 'locked') {
                     $update_user_query = 'UPDATE tbl_users SET user_status = :user_status WHERE user_id = :user_id';
