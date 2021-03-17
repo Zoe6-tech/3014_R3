@@ -9,7 +9,8 @@
 </head>
 <body>
     <section class="login_fail ">
-        <h2>Account is locked, unable to login. </h2>
+        <h2>Account is locked due to expire login time . Please contact Admin to unlock.</h2>
+        <p>Admin Email : z_meng@fanshaweonline.ca</p>
         <br>
         <a href="admin_login.php">Back</a>
     </section>
