@@ -1,4 +1,6 @@
 <?php
+
+
 define('ABSPATH',__DIR__);//php will detect the director where is being called and save as a constant
 define('ADMIN_PATH',ABSPATH.'/admin');
 define('ADMIN_SCRIPT_PATH',ADMIN_PATH.'/scripts');
