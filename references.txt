@@ -1,0 +1,4 @@
+New user has a time limit to log in after their account has been created:
+https://stackoverflow.com/questions/11163529/comparing-unix-timestamps
+https://www.tutorialspoint.com/php/php_date_and_time.htm#:~:text=PHP%27s%20time%20%28%29%20function%20gives%20you%20all%20the,elapsed%20since%20midnight%20GMT%20on%20January%201%2C%201970.
+https://blog.csdn.net/weixin_39927850/article/details/96477745?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4.control&dist_request_id=1328666.10293.16159914747101683&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4.control
