@@ -22,13 +22,34 @@ function login($username, $password, $ip) {
 
         $found_user_id = $found_user['user_id'];//get user id
 
-        $found_user_id = $found_user['user_id'];//get user id
+        //Newly created user, not logged in in in two minutes, user locked
+        if ($found_user['login_times'] =0) {
+
+             $diff = strtotime($found_user['user_date']) - time();
+            //$diff = strtotime($found_user['user_date']) - strtotime('now');
+
+            if ($diff > 60) {
+
+                //If the account has been locked
+                if ($found_user['user_status'] != 'locked') {
+                    $update_user_query = 'UPDATE tbl_users SET user_status = :user_status WHERE user_id = :user_id';
+                    $update_user_set = $pdo -> prepare($update_user_query);
+                    $update_user_set -> execute(
+                        array(
+                            ':user_status' => 'locked',
+                            ':user_id' => $found_user_id
+                        )
+                    );
+                }
+                redirect_to('login_fail.php');
+                exit;
+            }
+        }
+
         //write the username and userID into session
         $_SESSION['user_id'] = $found_user_id;
         $_SESSION['user_name'] = $found_user['user_name'];
         $_SESSION['user_level'] = $found_user['user_level'];//show user level
-
-       
 
         //update the user IP by the curren logged in one
         $update_user_query = 'UPDATE tbl_users SET user_ip = :user_ip WHERE user_id = :user_id';
@@ -68,12 +89,6 @@ function login($username, $password, $ip) {
         if($_SESSION['login_times'] == 1){
             redirect_to('admin_edituser.php');
         }
-            
-            
-        
-            
-       
-        
        
        ##TODO : debug only, will change here
        //return 'Hello, ' . $username . '!  <br />  Your IP address (using $_SERVER[\'REMOTE_ADDR\']) is ' . $ip . '<br /><br />';

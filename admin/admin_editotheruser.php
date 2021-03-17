@@ -6,14 +6,13 @@ confirm_logged_in();
 //only admin have acesss to this page
 admin_access_only();
 
+
 $id = $_SESSION['user_id'];//define in login.php
 
-$get_single_user= getAllUser($id);
+$users = getAllUsers($id);
 
-
-
-if(empty($search_user_name)){//is user doesnt exist
-    $message = 'Username doesnt exist';
+if(!$users){
+    $messager = 'Fail to get user list';
 }
 
 // when user click submit
@@ -25,9 +24,9 @@ if(isset($_POST['submit'])){
         'password'   => trim($_POST['password']),
         'email'      => trim($_POST['email']),
         'user_level' => isCurrentUserAdminAbove()?trim($_POST['user_level']):'0', 
-        'id'         => $id,//update a exist user so need id
+        'id'         => trim($_POST['userid']),//update a exist user so need id
     );
-    
+    // var_dump($data);die;
   $message = editUser($data);//update user info to database
 }
 ?>
@@ -44,16 +43,16 @@ if(isset($_POST['submit'])){
 </head>
 <body>
     <section class="edit_user_area">
-        <h2>Edit User</h2>
-        <?php if(empty($get_single_user)):?>
-
-        <?php endif ?>
+        <h2>Edit Other Users</h2>
+       
         <div class="edit_user_form">
             <?php echo !empty($message)?$message:'';?>
-                <?php if(!empty($get_single_user)):?>
-                    <form action="admin_edituser.php" method="post">
-                        <?php while($user_info = $get_single_user -> fetch(PDO::FETCH_ASSOC)):?><!--user_info: table columns name-->
+
+                <?php if(!empty($users)):?>
+                        <?php while($user_info = $users -> fetch(PDO::FETCH_ASSOC)):?><!--user_info: table columns name-->
                             <br>
+                        <form action="admin_editotheruser.php" method="post">
+                            <input type="hidden" name="userid" value="<?php echo $user_info['user_id']; ?>">
                             <div class="edituser_label_input">
                             <label for="user_name">User Name:</label>
                             <input type="text" name="username"  id="user_name"  value="<?php echo $user_info['user_name']; ?>">
@@ -91,14 +90,17 @@ if(isset($_POST['submit'])){
                             <?php endif;?>
                             </div>
                             <br><br>
-                        <?php endwhile;?>
-                        
-                        <div class="edit_user_buttons">
-                            <button  class="subimt-createuser" type="submit" name="submit">SUBMIT</button>
-                            <a href="index.php">BACK</a>
-                            </div>
 
-                    </form>
+                            
+                            <div class="edit_user_buttons">
+                                <button  class="subimt-createuser" type="submit" name="submit">SUBMIT</button>
+                                <a href="index.php">BACK</a>
+                            </div>
+                            
+                        </form>
+                        
+                        <?php endwhile;?>
+
                 <?php endif;?>
         </div>
     </section>
