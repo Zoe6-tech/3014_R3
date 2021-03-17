@@ -5,7 +5,7 @@ require_once '../load.php';
 confirm_logged_in();
 
 $id = $_SESSION['user_id'];//define in login.php
-    $current_user = getSingleUser($id);
+$current_user = getSingleUser($id);
 
 
 
