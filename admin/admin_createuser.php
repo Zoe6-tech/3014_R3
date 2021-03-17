@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
     echo "<br>";
     $email_message .= sprintf("Your current password is: %s \r\n", $user_password);
     echo "<br>";
-    $email_message .= "Welcome login our awesome website: www.awesome.com \r\n";
+    $email_message .= "Welcome login our awesome website: http://localhost/Meng_Z_Oka_R_3014_r3/admin/admin_login.php \r\n";
 
     $email_headers = "From: Admin Meng <mengzhu0204@gmail.com>\r\n";
     $email_headers .= "To: $user_email\r\n";

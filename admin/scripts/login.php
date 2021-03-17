@@ -20,23 +20,32 @@ function login($username, $password, $ip) {
     if($found_user = $user_set -> fetch(PDO::FETCH_ASSOC)){//PDO::FETCH_ASSOC tells PDO to return the result as an associative array.
        //if found user exist in user database, get him in!
 
+       if ($found_user['user_status'] ==='locked') {
+        return "You account has locked, please contact admin";
+        redirect_to('admin_login.php');
+        exit;
+    }
+
         $found_user_id = $found_user['user_id'];//get user id
 
-        //Newly created user, not logged in in in two minutes, user locked
-        if ($found_user['login_times'] =0) {
+       
+        //Newly created user, not logged in two minutes, user locked
+        if ( $found_user['login_times'] == 0) {
 
+            //simply compare two integer timestamp values...
              $diff = strtotime($found_user['user_date']) - time();
             //$diff = strtotime($found_user['user_date']) - strtotime('now');
 
-            if ($diff > 60) {
+             $limit_time = 2*60;
 
-                //If the account has been locked
+            if ( $diff  >=  $limit_time ) {
+                  // it been more than 2 minutes
                 if ($found_user['user_status'] != 'locked') {
                     $update_user_query = 'UPDATE tbl_users SET user_status = :user_status WHERE user_id = :user_id';
                     $update_user_set = $pdo -> prepare($update_user_query);
                     $update_user_set -> execute(
                         array(
-                            ':user_status' => 'locked',
+                            ':user_status'=>'locked',
                             ':user_id' => $found_user_id
                         )
                     );
@@ -45,6 +54,8 @@ function login($username, $password, $ip) {
                 exit;
             }
         }
+
+
 
         //write the username and userID into session
         $_SESSION['user_id'] = $found_user_id;
@@ -86,6 +97,7 @@ function login($username, $password, $ip) {
                 )
         );
 
+        //first time login redirect to edit user page
         if($_SESSION['login_times'] == 1){
             redirect_to('admin_edituser.php');
         }

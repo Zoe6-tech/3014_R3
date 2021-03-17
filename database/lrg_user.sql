@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 17, 2021 at 10:55 AM
+-- Generation Time: Mar 17, 2021 at 07:22 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -42,18 +42,18 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `login_times` int(11) DEFAULT '0',
   `user_status` varchar(20) NOT NULL DEFAULT 'unlocked',
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_users`
 --
 
 INSERT INTO `tbl_users` (`user_id`, `user_level`, `user_name`, `user_fname`, `user_lname`, `user_password`, `user_email`, `user_ip`, `user_date`, `last_login`, `login_times`, `user_status`) VALUES
-(1, '2', 'admin', 'Zoe', 'Zoe', 'admin123', 'test@test.com', '127.0.0.1', '2021-02-12 19:57:36', '2021-03-14 09:37:58', 65, 'unlocked'),
-(5, '0', 'test2', 'test', 'test', 'test123', 'test.test@com', '127.0.0.1', '2021-03-12 08:36:18', '2021-03-16 07:34:52', 50, 'unlocked'),
-(2, '2', 'pan', 'pan', 'pan', 'pan123', 'test.test@com', '127.0.0.1', '2021-03-12 08:36:18', '2021-03-17 10:13:33', 51, 'unlocked'),
-(3, '0', 'test', 'test', 'test', 'test123', 'test.test@com', '127.0.0.1', '2021-03-12 08:36:18', '2021-03-16 07:34:52', 50, 'unlocked'),
-(4, '0', 'test1', 'test', 'test', 'test123', 'test.test@com', '127.0.0.1', '2021-03-12 08:36:18', '2021-03-16 07:34:52', 50, 'unlocked');
+(1, '2', 'admin', 'Zoe', 'Zoe', 'admin123', 'test@test.com', '127.0.0.1', '2021-02-12 19:57:36', '2021-03-17 18:59:42', 66, 'unlocked'),
+(2, '2', 'pan', 'pan', 'pan', 'pan123', 'test.test@com', '127.0.0.1', '2021-03-12 08:36:18', '2021-03-17 19:07:16', 60, 'unlocked'),
+(4, '0', 'test', 'test', 'test', 'test123', 'test.test@com', '127.0.0.1', '2021-03-12 08:36:18', '2021-03-16 07:34:52', 5, 'unlocked'),
+(5, '0', 'test2', 'test2', 'test2', 'InKHlLUl', 'z_meng@fanshaweonline.ca', '127.0.0.1', '2021-03-17 17:47:52', '2021-03-17 18:58:55', 2, 'locked'),
+(6, '0', 'test3', 'test3', 'test3', 'djCnWxxd', 'z_meng@fanshaweonline.ca', NULL, '2021-03-17 19:07:30', NULL, 0, 'unlocked');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
